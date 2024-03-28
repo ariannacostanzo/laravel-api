@@ -14,6 +14,10 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
+
+        foreach($projects as $project){
+            if($project->image) $project->image = url('storage/' . $project->image);
+        }
         return response()->json($projects);
     }
 
@@ -49,3 +53,4 @@ class ProjectController extends Controller
         //
     }
 }
+
