@@ -13,7 +13,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::with('type')->get();
 
         foreach($projects as $project){
             if($project->image) $project->image = url('storage/' . $project->image);
