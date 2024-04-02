@@ -16,8 +16,8 @@ class ProjectController extends Controller
         //fare il paginate
         $projects = Project::with('type')->get();
 
-        foreach($projects as $project){
-            if($project->image) $project->image = url('storage/' . $project->image);
+        foreach ($projects as $project) {
+            if ($project->image) $project->image = url('storage/' . $project->image);
         }
         return response()->json($projects);
     }
@@ -33,9 +33,9 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $project)
+    public function show(string $slug)
     {
-        $project = Project::with('type')->find($project);
+        $project = Project::with('type')->whereSlug($slug)->first();
         if (!$project) return response(null, 404);
         if ($project->image) $project->image = url('storage/' . $project->image);
         return response()->json($project);
@@ -57,4 +57,3 @@ class ProjectController extends Controller
         //
     }
 }
-
