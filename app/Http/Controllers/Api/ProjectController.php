@@ -35,7 +35,7 @@ class ProjectController extends Controller
      */
     public function show(string $project)
     {
-        $project = Project::findOrFail($project);
+        $project = Project::find($project);
         if (!$project) return response(null, 404);
         return response()->json($project);
     }
