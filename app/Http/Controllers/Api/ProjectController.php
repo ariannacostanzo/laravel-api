@@ -35,7 +35,7 @@ class ProjectController extends Controller
      */
     public function show(string $project)
     {
-        $project = Project::find($project);
+        $project = Project::with('type')->find($project);
         if (!$project) return response(null, 404);
         return response()->json($project);
     }
