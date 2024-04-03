@@ -20,6 +20,7 @@ class ProjectSeeder extends Seeder
                 'slug' => 'spotify',
                 'description' => 'Questo sito si propone come un\'imitazione del famoso Spotify.',
                 'image' => '',
+                
             ],
             [
                 'title' => 'Giallo Booleano',

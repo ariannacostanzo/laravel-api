@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -25,9 +26,15 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function typeProjects(string $slug)
     {
-        //
+        $type = Type::whereSlug($slug)->first();
+        if (!$type) return response(null, 404);
+        $projects = Project::whereTypeId($type->id)->with('technologies')->get();
+        foreach ($projects as $project) {
+            if ($project->image) $project->image = url('storage/' . $project->image);
+        }
+        return response()->json(['projects' => $projects, 'label' => $type->label]);
     }
 
     /**

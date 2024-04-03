@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/projects', [ProjectController::class, 'index']);
 Route::get('/projects/{slug}', [ProjectController::class, 'show']); 
+Route::get('/types/{slug}/projects', [ProjectController::class, 'typeProjects']); 
 // Route::project('/projects', [ProjectController::class, 'store'])  
 // Route::delete('/projects{project}', [ProjectController::class, 'destroy'])  
 // Route::put('/projects/{project}', [ProjectController::class, 'update'])  
